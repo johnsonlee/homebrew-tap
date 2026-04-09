@@ -10,7 +10,7 @@ class GraphiteQuery < Formula
 
   def install
     libexec.install "graphite-query.jar"
-    (bin/"graphite-query").write <<~EOS
+    (bin/"graphite").write <<~EOS
       #!/bin/bash
       exec "#{Formula["openjdk@17"].opt_bin}/java" ${GRAPHITE_OPTS:--Xmx4g} -jar "#{libexec}/graphite-query.jar" "$@"
     EOS
