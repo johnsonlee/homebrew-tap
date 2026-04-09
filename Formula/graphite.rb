@@ -1,4 +1,4 @@
-class GraphiteQuery < Formula
+class Graphite < Formula
   desc "Query and inspect Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
   version "0.1.0-rc1"
@@ -17,6 +17,6 @@ class GraphiteQuery < Formula
   end
 
   test do
-    assert_match "Usage", shell_output("#{bin}/graphite-query --help")
+    assert_match "Usage", shell_output("#{bin}/graphite --help")
   end
 end
