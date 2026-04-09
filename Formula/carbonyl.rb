@@ -2,6 +2,7 @@ class Carbonyl < Formula
   desc "Chromium based browser that runs in the terminal"
   homepage "https://github.com/johnsonlee/carbonyl"
   version "0.0.3"
+  revision 1
   license "BSD-3-Clause"
 
   # Mirror of upstream fathyb/carbonyl v0.0.3 assets; bit-for-bit identical.
@@ -36,9 +37,17 @@ class Carbonyl < Formula
     # directory, so we drop everything into libexec as a self-contained bundle.
     libexec.install Dir["*"]
 
-    # Chromium resolves sibling resources via the real path of the executable
-    # (_NSGetExecutablePath / /proc/self/exe), so a symlink in bin works.
-    bin.install_symlink libexec/"carbonyl"
+    # Chromium locates sibling resources (icudtl.dat, v8 snapshot, dylibs)
+    # relative to argv[0]/_NSGetExecutablePath, which on macOS returns the
+    # invocation path — symlinks included. A `bin.install_symlink` would
+    # therefore cause the binary to look for icudtl.dat next to the symlink
+    # in HOMEBREW_PREFIX/bin and fail. A wrapper script exec's the real path
+    # so the binary sees its own libexec as the resource root.
+    (bin/"carbonyl").write <<~SH
+      #!/bin/bash
+      exec "#{libexec}/carbonyl" "$@"
+    SH
+    (bin/"carbonyl").chmod 0755
   end
 
   test do
