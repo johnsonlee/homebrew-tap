@@ -1,8 +1,8 @@
 class Tmd < Formula
   desc "Terminal markdown previewer, powered by carbonyl"
   homepage "https://github.com/johnsonlee/tmd"
-  url "https://github.com/johnsonlee/tmd/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "a619bc733ba8e10540bb24d6722e4e0f29cfaea719a18469f6ea36ba5d08cffb"
+  url "https://github.com/johnsonlee/tmd/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "03e75b6954b66530cd14dba0984936ad05ef391bfca627f8296bc1a11546f2b8"
   license "MIT"
   head "https://github.com/johnsonlee/tmd.git", branch: "main"
 
