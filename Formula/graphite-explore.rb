@@ -1,9 +1,9 @@
 class GraphiteExplore < Formula
   desc "Interactive web visualization for Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  version "1.0.0-rc7"
+  version "1.0.0-rc8"
   url "https://github.com/johnsonlee/graphite/releases/download/v#{version}/graphite-explore.jar"
-  sha256 "b9ce1e50866c9e433dd95ed297010d008a845d100830f62e07ade92058b18bf0"
+  sha256 "886f3ff2a7d4afea77c17c9b26255c91e2925026861284073fe0737d113c9841"
   license "Apache-2.0"
 
   depends_on "openjdk@17"
