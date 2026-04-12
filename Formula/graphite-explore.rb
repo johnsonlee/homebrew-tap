@@ -1,9 +1,9 @@
 class GraphiteExplore < Formula
   desc "Interactive web visualization for Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  version "1.0.0-rc9"
+  version "1.0.0-rc10"
   url "https://github.com/johnsonlee/graphite/releases/download/v#{version}/graphite-explore.jar"
-  sha256 "54475dc772742a020920163171b524365042177fbf604f4b6936b8c5297dc21b"
+  sha256 "13a10d977dbc1dfeafa4c7c0e3b203a33d92364220d189e1331444bb8c89aaa6"
   license "Apache-2.0"
 
   depends_on "openjdk@17"
@@ -12,7 +12,31 @@ class GraphiteExplore < Formula
     libexec.install "graphite-explore.jar"
     (bin/"graphite-explore").write <<~EOS
       #!/bin/bash
-      exec "#{Formula["openjdk@17"].opt_bin}/java" ${GRAPHITE_OPTS:--Xmx8g} -jar "#{libexec}/graphite-explore.jar" "$@"
+      export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:-${JAVA_OPTS:--Xmx8g}}"
+      AGENT_ARGS=""
+      PASSTHROUGH_ARGS=()
+      for arg in "$@"; do
+        if [ "$arg" = "--profile" ]; then
+          PROFILE_OUT="${GRAPHITE_PROFILE:-profile.html}"
+          AP_LIB=""
+          ASPROF="$(which asprof 2>/dev/null)"
+          if [ -n "$ASPROF" ]; then
+            AP_DIR="$(dirname "$ASPROF")/../lib"
+            for ext in dylib so; do
+              [ -f "$AP_DIR/libasyncProfiler.$ext" ] && AP_LIB="$AP_DIR/libasyncProfiler.$ext" && break
+            done
+          fi
+          if [ -n "$AP_LIB" ]; then
+            AGENT_ARGS="-agentpath:$AP_LIB=start,event=cpu,file=$PROFILE_OUT"
+          else
+            echo "async-profiler not found. Install: brew install async-profiler" >&2
+            exit 1
+          fi
+        else
+          PASSTHROUGH_ARGS+=("$arg")
+        fi
+      done
+      exec "#{Formula["openjdk@17"].opt_bin}/java" $AGENT_ARGS -jar "#{libexec}/graphite-explore.jar" "${PASSTHROUGH_ARGS[@]}"
     EOS
   end
 
