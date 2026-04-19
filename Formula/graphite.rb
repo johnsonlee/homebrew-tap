@@ -1,9 +1,9 @@
 class Graphite < Formula
   desc "Query and inspect Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  version "1.0.0"
+  version "1.1.0-alpha.1"
   url "https://github.com/johnsonlee/graphite/releases/download/v#{version}/graphite-query.jar"
-  sha256 "eac4d3882ecaae558cb37d51e97085c90a72d3e89f9665dd0c307bd4cd9b4358"
+  sha256 "e24698b241764c2a4cf5b51fc0bb2115d4bf7894763cbffaa7c5dfbe35650366"
   license "Apache-2.0"
 
   depends_on "openjdk@17"
