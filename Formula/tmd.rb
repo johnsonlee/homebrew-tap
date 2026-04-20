@@ -1,28 +1,28 @@
 class Tmd < Formula
   desc "Terminal markdown previewer, powered by carbonyl"
   homepage "https://github.com/johnsonlee/tmd"
-  version "0.4.0"
+  version "0.5.0"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/johnsonlee/tmd/releases/download/v0.4.0/tmd-aarch64-apple-darwin.tar.gz"
-      sha256 "97506a9a0681c8212cf14ccc12f9b7aeb9f84463220a7d9a78c93a880caf080f"
+      url "https://github.com/johnsonlee/tmd/releases/download/v0.5.0/tmd-aarch64-apple-darwin.tar.gz"
+      sha256 "32414bc0d2df09c4f2d8066b06a457f7bac0d0ab730c1ea0f02472313721c1dc"
     end
     on_intel do
-      url "https://github.com/johnsonlee/tmd/releases/download/v0.4.0/tmd-x86_64-apple-darwin.tar.gz"
-      sha256 "bd4437beeea47b3598d1730fb23997a5918fa341dd84a530c5a12660c09126ff"
+      url "https://github.com/johnsonlee/tmd/releases/download/v0.5.0/tmd-x86_64-apple-darwin.tar.gz"
+      sha256 "cf789627cee9cb3babf55fba487fd6afc776fb8f1d28d0c02c3a83b09d28d6d5"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/johnsonlee/tmd/releases/download/v0.4.0/tmd-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "2038c0b911d247b93988552736c800f7ea2eaffae9a1c2132eda19a4ace1fc19"
+      url "https://github.com/johnsonlee/tmd/releases/download/v0.5.0/tmd-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "41fd7cfa04e9bae7e72860a531546e62332f7ad485b052f0512c787e4485cc76"
     end
     on_intel do
-      url "https://github.com/johnsonlee/tmd/releases/download/v0.4.0/tmd-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "9a8f57e2aa973adf73123858f4d2a75a7d36f8113641ae1cb816c34d2b0ce171"
+      url "https://github.com/johnsonlee/tmd/releases/download/v0.5.0/tmd-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "f8dbc8251b1f9a290002189f7fde588c4cba497c2226c292b99a471627014a2f"
     end
   end
 
