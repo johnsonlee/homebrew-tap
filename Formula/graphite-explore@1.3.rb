@@ -1,13 +1,14 @@
-class GraphiteExploreAT20 < Formula
+class GraphiteExploreAT13 < Formula
   desc "Interactive web visualization for Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  version "2.0.0"
-  url "https://github.com/johnsonlee/graphite/releases/download/v#{version}/graphite-explore.jar"
-  sha256 "b370745c5fea4036ab3cfda99c1bfdf541bf767ff9d3f28f72dc434945cbd031"
+  url "https://github.com/johnsonlee/graphite/releases/download/v1.3.0/graphite-explore.jar"
+  version "1.3.0"
+  sha256 "5238cd6eafaf4d59f068b47b15a2c46f6f0b5d5dfc695f6787b7629148f3e051"
   license "Apache-2.0"
 
+  keg_only :versioned_formula
+
   depends_on "openjdk@17"
-  conflicts_with "graphite-explore", because: "both install the graphite-explore executable"
 
   def install
     libexec.install "graphite-explore.jar"
@@ -37,7 +38,7 @@ class GraphiteExploreAT20 < Formula
           PASSTHROUGH_ARGS+=("$arg")
         fi
       done
-      exec "#{Formula["openjdk@17"].opt_bin}/java" $AGENT_ARGS -jar "#{libexec}/graphite-explore.jar" "${PASSTHROUGH_ARGS[@]}"
+      exec "#{formula_opt_bin("openjdk@17")}/java" $AGENT_ARGS -jar "#{libexec}/graphite-explore.jar" "${PASSTHROUGH_ARGS[@]}"
     EOS
   end
 
