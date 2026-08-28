@@ -1,9 +1,9 @@
 class Graphite < Formula
   desc "Build, query, and serve Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  url "https://github.com/johnsonlee/graphite/releases/download/v2.3.0/graphite.jar"
-  version "2.3.0"
-  sha256 "0bc06e91652cd6a44c117c6c840cdc62cb23977805908d126beb72076b2dcb2d"
+  url "https://github.com/johnsonlee/graphite/releases/download/v2.4.0/graphite.jar"
+  version "2.4.0"
+  sha256 "f629fdc0bca0fab2a309e0cc10b09d71238831485baa739ea4bc6e3dc0166f35"
   license "Apache-2.0"
 
   depends_on "openjdk@17"
