@@ -1,46 +1,49 @@
 class Graphite < Formula
   desc "Build, query, and serve Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  url "https://github.com/johnsonlee/graphite/releases/download/v2.4.8/graphite.jar"
-  version "2.4.8"
-  sha256 "1ac8f480e394d8fed3fd8448bf3333b7f6535e1a25ded709c4b555c172de1d8b"
+  version "2.5.0"
   license "Apache-2.0"
+
+  on_macos do
+    on_arm do
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.5.0/graphite-2.5.0-aarch64-apple-darwin.tar.gz"
+      sha256 "c95ec798dcaa693c77f068728fc117823bdc361e64afbf5dd0f2c1af940b5b2f"
+    end
+    on_intel do
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.5.0/graphite-2.5.0-x86_64-apple-darwin.tar.gz"
+      sha256 "5faa65b5c15f1960dbb5b12913f53447b5ba5696db60d96cb317a749b4e0f4d4"
+    end
+  end
+
+  on_linux do
+    on_arm do
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.5.0/graphite-2.5.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "485791e4aeafe468c2ab3f71de244c052b25531571a0b0d4644d4a47f490e96d"
+    end
+    on_intel do
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.5.0/graphite-2.5.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "afd4b98042a6286a86b4ab1f8b56e89d1e3a7e76080f4773af5d5437635397c7"
+    end
+  end
+
+  # The JVM frontend: `graphite build` runs it to analyse JAR/WAR/APK inputs.
+  resource "frontend-jvm" do
+    url "https://github.com/johnsonlee/graphite/releases/download/v2.5.0/graphite.jar"
+    sha256 "68703fee06e055abe0afa506947bbc1a8a50761556f651866b13c56b689edcab"
+  end
 
   depends_on "openjdk@17"
 
   def install
-    libexec.install "graphite.jar"
-    (bin/"graphite").write <<~EOS
-      #!/bin/bash
-      export JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:-${JAVA_OPTS:--Xmx8g}}"
-      AGENT_ARGS=""
-      PASSTHROUGH_ARGS=()
-      for arg in "$@"; do
-        if [ "$arg" = "--profile" ]; then
-          PROFILE_OUT="${GRAPHITE_PROFILE:-profile.html}"
-          AP_LIB=""
-          ASPROF="$(which asprof 2>/dev/null)"
-          if [ -n "$ASPROF" ]; then
-            AP_DIR="$(dirname "$ASPROF")/../lib"
-            for ext in dylib so; do
-              [ -f "$AP_DIR/libasyncProfiler.$ext" ] && AP_LIB="$AP_DIR/libasyncProfiler.$ext" && break
-            done
-          fi
-          if [ -n "$AP_LIB" ]; then
-            AGENT_ARGS="-agentpath:$AP_LIB=start,event=cpu,file=$PROFILE_OUT"
-          else
-            echo "async-profiler not found. Install: brew install async-profiler" >&2
-            exit 1
-          fi
-        else
-          PASSTHROUGH_ARGS+=("$arg")
-        fi
-      done
-      exec "#{formula_opt_bin("openjdk@17")}/java" $AGENT_ARGS -jar "#{libexec}/graphite.jar" "${PASSTHROUGH_ARGS[@]}"
-    EOS
+    libexec.install "graphite"
+    resource("frontend-jvm").stage { libexec.install "graphite.jar" }
+    (bin/"graphite").write_env_script libexec/"graphite",
+      GRAPHITE_JAVA:         "#{Formula["openjdk@17"].opt_bin}/java",
+      GRAPHITE_FRONTEND_JVM: "#{libexec}/graphite.jar"
   end
 
   test do
     assert_match "Usage", shell_output("#{bin}/graphite --help")
+    assert_match "jvm", shell_output("#{bin}/graphite frontend list")
   end
 end
