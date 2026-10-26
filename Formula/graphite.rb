@@ -1,35 +1,35 @@
 class Graphite < Formula
   desc "Build, query, and serve Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  version "2.11.3"
+  version "2.11.4"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.3/graphite-2.11.3-aarch64-apple-darwin.tar.gz"
-      sha256 "3ed8f0759eef761bb60903a6e73cf206fc76fd737dff2e054fd1d59dccd06040"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.4/graphite-2.11.4-aarch64-apple-darwin.tar.gz"
+      sha256 "12d6522e7eb3c193fc63116e1364bb2bec1ea1c912624a789006cfa0c56c05b4"
     end
     on_intel do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.3/graphite-2.11.3-x86_64-apple-darwin.tar.gz"
-      sha256 "7f6ffcb23cf35e36637efacda691040a9efec215cc1f750ad6d8cad96ece7af4"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.4/graphite-2.11.4-x86_64-apple-darwin.tar.gz"
+      sha256 "cbf4d10f2772149889b9f73a5acb2aadd2db5ee41f55f84e1b31e7bdadc31d4e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.3/graphite-2.11.3-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "ed1fe28981c7f48a2518174a6af1a1eab8caa90233daef8c6e849553b2611693"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.4/graphite-2.11.4-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "663577fdf94f928a724bf40faeb7b653d906f74c2aa0b4bf4a4662625c7c12d2"
     end
     on_intel do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.3/graphite-2.11.3-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "83df09f969a01e8bdac0cfba13875d13ac28c96a40091671c7e41ad6d5f20565"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.11.4/graphite-2.11.4-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "0ba961817deb1bb35b08f411cb30bd7779e7933ff0b5c7af8fe6f0ad4bfb2a67"
     end
   end
 
   # The JVM frontend: `graphite build` runs it to analyse JAR/WAR/APK inputs.
   resource "frontend-jvm" do
-    url "https://github.com/johnsonlee/graphite/releases/download/v2.11.3/graphite.jar"
-    sha256 "2f776b7a07cf20915e10f44774febceea34939d5abec445947d65270f47ad129"
+    url "https://github.com/johnsonlee/graphite/releases/download/v2.11.4/graphite.jar"
+    sha256 "0400e841405206b714259b165e3e692373979947e9fba3be52e2c6ea6f05bed6"
   end
 
   depends_on "openjdk@17"
