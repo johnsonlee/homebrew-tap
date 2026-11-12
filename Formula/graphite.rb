@@ -1,35 +1,35 @@
 class Graphite < Formula
   desc "Build, query, and serve Graphite static analysis graphs"
   homepage "https://github.com/johnsonlee/graphite"
-  version "2.16.0"
+  version "2.17.0"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-2.16.0-aarch64-apple-darwin.tar.gz"
-      sha256 "f443790287e978e954ac8e3bc6ec72aa7fcd5627ee80e0323ce8e86d9bac632c"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-2.17.0-aarch64-apple-darwin.tar.gz"
+      sha256 "1fe6f08dd840de33fd9dbce0d7f4f6901f59ed701c6c6ddbe7df999d8335c231"
     end
     on_intel do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-2.16.0-x86_64-apple-darwin.tar.gz"
-      sha256 "543d9fa70712d9ff2ca36d2b9bb0e71db01c1e874c7eb4ae35172d26eaf5f3ac"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-2.17.0-x86_64-apple-darwin.tar.gz"
+      sha256 "09fffbf12c4f8ce9f9e2b18685e135f7e4c587ce33bdbad1ffa5a84f809757e8"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-2.16.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "20edfa9219b348c4238d0dd15c48d3fb27c9de8e1d71694ce3db57f350808818"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-2.17.0-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "b3dd3d5a75b8e39775e7ca436f45b0597cec08df3f6228bea93a9bbc573456b1"
     end
     on_intel do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-2.16.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "e02ac902e67df8c8a168ee2153a8f40d9b4916e999b727183d630824c723c3d8"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-2.17.0-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "cd7cefbede50e54020f849febf21fbc7ff7404c2f228528975ee60a394ca4698"
     end
   end
 
   # The JVM frontend: `graphite build` runs it to analyse JAR/WAR/APK inputs.
   resource "frontend-jvm" do
-    url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite.jar"
-    sha256 "4efb051d916179bac63c64c4e1075c5430d314465a47fd4c814e3f378a0efdab"
+    url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite.jar"
+    sha256 "c5ee9a4c75c7320cf4eb72121693a8f4daa28d7461b686c6d7471139ccfa7481"
   end
 
   # The Apple frontend: `graphite build` runs it on a Swift package. It drives
@@ -38,17 +38,17 @@ class Graphite < Formula
   resource "frontend-apple" do
     on_macos do
       on_arm do
-        url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-frontend-apple-2.16.0-aarch64-apple-darwin.tar.gz"
-        sha256 "a54b0fc5bcafc7f97a24f295a69a37b7a7c129106f2b98163df74f7e37775418"
+        url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-frontend-apple-2.17.0-aarch64-apple-darwin.tar.gz"
+        sha256 "caa8546bf720065efee541560065d67683f4b6b21cd699d5cbcb8a8a3d70df86"
       end
       on_intel do
-        url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-frontend-apple-2.16.0-x86_64-apple-darwin.tar.gz"
-        sha256 "c3ffa12dd9aa449b32f2a59f83ed4f1b977afd90960c4232db8eb66bd6a0b11a"
+        url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-frontend-apple-2.17.0-x86_64-apple-darwin.tar.gz"
+        sha256 "f8236a9087f81425da878daa270967d4329feec85ed51f9c1c14ce1158c4a407"
       end
     end
     on_linux do
-      url "https://github.com/johnsonlee/graphite/releases/download/v2.16.0/graphite-frontend-apple-2.16.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "caaccc58238062eb30b6bb3169faf2252b2afb95fb60126e1cfef697d2a2cc69"
+      url "https://github.com/johnsonlee/graphite/releases/download/v2.17.0/graphite-frontend-apple-2.17.0-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "a522c18a37fe90987d388f26b6895b0ac9f8a8270bff2f65fb12904fd0041af4"
     end
   end
 
